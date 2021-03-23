@@ -23,5 +23,5 @@ production:
   password: 
   pool: 5
   timeout: 5000
-  host: localhost
+  host: 
   database: zaina_api_production

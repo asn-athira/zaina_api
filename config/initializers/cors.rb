@@ -16,7 +16,7 @@
 # end
 Rails.application.config.middleware.insert_before 0, Rack::Cors do 
   allow do
-    origins 'http://localhost:3000','https://zaina-app.vercel.app/'
+    origins 'https://zaina-app.vercel.app'
   
     resource '*',
       headers: :any,

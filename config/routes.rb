@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	 root 'home#index'
+  get '/', to:'home#index'
 
 	resources :users, param: :_username
   post '/auth/login', to: 'authentication#login'

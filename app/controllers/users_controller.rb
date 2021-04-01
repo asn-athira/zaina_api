@@ -18,9 +18,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       render json: @user, status: :created
+      #render json: {
+       # alert: "Signup Sucessfully"
+      #}
     else
       render json: { errors: @user.errors.full_messages },
-             status: :unprocessable_entity
+            status: :unprocessable_entity
+       #render json: {
+        #alert: { errors: @user.errors.full_messages }
+      #}
     end
   end
 
@@ -46,8 +52,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(
-      :name, :username, :email, :password, :password_confirmation
-    )
+    params.require(:user).permit( :name, :username, :email, :password, :password_confirmation)
+    
   end
 end

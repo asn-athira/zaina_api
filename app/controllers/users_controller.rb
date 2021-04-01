@@ -17,10 +17,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      render json: @user, status: :created
+      #render json: @user, status: :created
       #render json: {
        # alert: "Signup Sucessfully"
       #}
+      render json: {  user: @user.email , alert: "Signup Sucessfully"}, status: :created
     else
       render json: { errors: @user.errors.full_messages },
             status: :unprocessable_entity
@@ -52,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit( :name, :username, :email, :password, :password_confirmation)
+    params.permit( :name, :username, :email, :password)
     
   end
 end

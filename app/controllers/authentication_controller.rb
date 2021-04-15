@@ -14,7 +14,8 @@ class AuthenticationController < ApplicationController
       #render json: {
         #alert: "Login Sucessfully"
       #}                  
-       render json: {  user: @user.username , alert: "Login Sucessfully"}, status: :ok
+       render json: {  data: @user.username , alert: "Login Sucessfully"}, status: :ok
+       #render json: {  data: @user , alert: "Login Sucessfully"}, status: :ok
     else
       render json: { error: 'Sorry ! Your username or password incorrect.' }, status: :unauthorized
       #render json: {

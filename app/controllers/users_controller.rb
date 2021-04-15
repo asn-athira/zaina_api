@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	 before_action :authorize_request, except: :create
-  before_action :find_user, except: %i[create index]
+	 #before_action :authorize_request, except: :create
+ # before_action :find_user, except: %i[create index]
 
   # GET /users
   def index
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       #render json: {
        # alert: "Signup Sucessfully"
       #}
-      render json: {  user: @user.email , alert: "Signup Sucessfully"}, status: :created
+      render json: {  user: @user.username , alert: "Signup Sucessfully"}, status: :created
     else
       render json: { errors: @user.errors.full_messages },
             status: :unprocessable_entity
@@ -41,13 +41,15 @@ class UsersController < ApplicationController
 
   # DELETE /users/{username}
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
+    render json: { alert: "Deleted Sucessfully"}, status: :ok
   end
 
   private
 
   def find_user
-    @user = User.find_by_username!(params[:_username])
+    @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       render json: { errors: 'User not found' }, status: :not_found
   end

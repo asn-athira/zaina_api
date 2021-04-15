@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	has_secure_password
+  #has_many :books
  # mount_uploader :avatar, AvatarUploader
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -28,5 +29,9 @@ class User < ApplicationRecord
 
   def generate_base64_token
     test = SecureRandom.urlsafe_base64
-  end          	
+  end     
+
+  def current_user
+    current_user = self.id        
+  end     	
 end
